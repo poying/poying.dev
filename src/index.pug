@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+html(lang="zh-hant-tw")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    meta(http-equiv="X-UA-Compatible", content="ie=edge")
+    title 陳柏穎 poying
+    link(rel="stylesheet" href="./styles/main.scss")
+    link(href="https://fonts.googleapis.com/css?family=Noto+Sans+TC" rel="stylesheet")
+  body
+    -
+      var albums = [
+        {
+          name: '2018 Japan',
+          folder: '2018-japan',
+          counts: 7,
+        },
+        {
+          name: '2019 Holland',
+          folder: '2019-holland',
+          counts: 24,
+        },
+      ];
+      var photos = [];
+      albums.forEach((album) => {
+        for (let i = 1; i <= album.counts; i += 1) {
+          photos.push({
+            album: album.name,
+            src: `./images/${album.folder}/${i}.jpg`,
+          });
+        }
+      });
+    div#main.hide
+      div#gallery-sources
+        each photo in photos
+          img.photo(src=photo.src data-album=photo.album)
+      div#profile
+        div.content
+          div.avatar
+          span.name
+            span.ch-name 陳柏穎
+            span.en-name poying
+          span.desc 2012 年開始以前端工程師的身份騙吃騙喝至今
+          a.gallery-button(href="#gallery")
+            span
+            span
+      div#gallery
+        a.close-button(href="#") Close
+        div.photos
+    div#loading
+      div.lds-ripple
+        div
+        div
+    script(src="./js/index.js")
